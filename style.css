@@ -21,13 +21,15 @@ a, a:visited, a:hover {
 /*STYLES*/
 body {
     background-color: #eaac8b;
+    font-family: 'Peralta', cursive;
 }
 
 h1 {
     text-align: center;
-    padding: 3rem;
+    padding: 2.5rem;
     background-color: #6d597a;
     color:white;
+    font-weight: 400;
 }
 
 .game {
@@ -70,6 +72,9 @@ h1 {
 
 /*MEDIA QUERIES*/
 @media (max-width: 900px) {
+    h1 {
+        font-size: 1.8rem;
+    }
 
     .game {
         padding: 2rem;
