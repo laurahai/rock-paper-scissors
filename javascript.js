@@ -1,4 +1,15 @@
 
+/*EVENTS*/
+const btns = document.querySelectorAll('.button');
+
+btns.forEach((button) => {
+    button.addEventListener('click', function (e) {
+        let playerChoice = button.textContent.toLowerCase();
+        console.log(playRound(playerChoice, getComputerChoice()))
+    });
+});
+
+/*COMPUTER CHOICE*/
 function getComputerChoice() {
     let prob = parseInt(9*Math.random()); //generates 0,1,2,3,4,5,6,7,8
     let choice = "";
@@ -15,7 +26,7 @@ function getComputerChoice() {
     return choice;
 }
 
-
+/*PLAY ONE ROUND*/
 function playRound(playerSelection, computerSelection) {
 
     console.log("player selects: " + playerSelection);
@@ -51,22 +62,19 @@ function playRound(playerSelection, computerSelection) {
             return `You win! ${playerSelection} beats ${computerSelection}`;
         }
     }
-    
+
 }
 
-function game() {
-    let playerInput = "";
-    for (let i = 1; i <= 5; i++) {
-        playerInput = prompt("Please enter rock, paper, or scissors: ").toLowerCase();
-        while ( ! (playerInput == "rock" || playerInput == "paper" || playerInput== "scissors" )) {
-            console.log("Please enter rock, paper, or scissors: ")
-            playerInput = prompt("Please enter rock, paper, or scissors: ").toLowerCase();
-        }
-        console.log(`results of round ${i}: ` + playRound(playerInput, getComputerChoice()));
-    }
-}
+// function game() {
+//     let playerInput = "";
+//     for (let i = 1; i <= 5; i++) {
+//         playerInput = prompt("Please enter rock, paper, or scissors: ").toLowerCase();
+//         while ( ! (playerInput == "rock" || playerInput == "paper" || playerInput== "scissors" )) {
+//             console.log("Please enter rock, paper, or scissors: ")
+//             playerInput = prompt("Please enter rock, paper, or scissors: ").toLowerCase();
+//         }
+//         console.log(`results of round ${i}: ` + playRound(playerInput, getComputerChoice()));
+//     }
+// }
 
-game();
-
-
-
+//game();
