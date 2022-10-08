@@ -4,9 +4,11 @@ const btns = document.querySelectorAll('.button');
 
 var counter = 0;
 var wins = 0;
+var losses = 0;
 
 btns.forEach((button) => {
     button.addEventListener('click', function (e) {
+        document.querySelector('.final-results').textContent = "";
         counter++;
         let playerChoice = button.textContent.toLowerCase();
         let computerChoice = getComputerChoice();
@@ -14,20 +16,20 @@ btns.forEach((button) => {
         console.log(roundResult);
 
         document.querySelector('.round-results').textContent = `Computer's choice: ${computerChoice}. ${roundResult} this round!`;
-        document.querySelector('.games-results').textContent = `You won ${wins} out of ${counter} rounds.`;
+        document.querySelector('.games-results').textContent = `Player | ${wins} vs ${losses} | Computer`;
 
-        if (counter >= 5) {
-            if (wins/counter > 0.5) {
-                document.querySelector('.games-results').textContent = `You won ${wins} out of ${counter} rounds. ` +
-                "You win the game!";
+        if (wins >= 5 || losses >= 5) {
+            if (wins > losses) {
+                document.querySelector('.final-results').textContent = `You win the game after ${counter} rounds!`;
                 counter = 0;
                 wins = 0;
+                losses = 0;
             }
             else {
-                document.querySelector('.games-results').textContent = `You won ${wins} out of ${counter} rounds. ` +
-                "You lose the game!";
+                document.querySelector('.final-results').textContent = `You lose the game after ${counter} rounds!`;
                 counter = 0;
                 wins = 0;
+                losses = 0;
             }
         }
     });
@@ -62,6 +64,7 @@ function playRound(playerSelection, computerSelection) {
 
     else if (playerSelection == "rock") {
         if (computerSelection == "paper") {
+            losses++;
             return `You lose`;
         }
         else {
@@ -76,12 +79,14 @@ function playRound(playerSelection, computerSelection) {
             return `You win`;
         }
         else {
+            losses++;
             return `You lose`;
         }
     }
 
     else { //player == scissors
         if (computerSelection == "rock") {
+            losses++;
             return `You lose`;
         }
         else {
