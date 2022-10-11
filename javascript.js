@@ -7,7 +7,7 @@ var wins = 0;
 var losses = 0;
 
 btns.forEach((button) => {
-    button.addEventListener('click', function (e) {
+    button.addEventListener('click', () => {
         document.querySelector('.final-results').textContent = "";
         counter++;
         let playerChoice = button.textContent.toLowerCase();
